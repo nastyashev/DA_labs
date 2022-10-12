@@ -44,7 +44,6 @@ def splitA(pathNotSorted: str, pathB: list, waysNum: str):
         filesB.append(open(path, "wb"))
 
     bIndex = 0
-
     while fileA.current:
         filesB[bIndex].write(fileA.current)
         if fileA.current > fileA.next:
@@ -77,8 +76,9 @@ def sortMerge(pathsInputs: list, pathsOutputs: list, waysNum: int):
             if readers[i].current:
                 number = int.from_bytes(readers[i].current, 'big')
                 if not series or number >= series[-1]:
-                    minNum = number
-                    minIndex = i
+                    if number <= minNum:
+                        minNum = number
+                        minIndex = i
 
         if minIndex == -1:
             for number in series:
