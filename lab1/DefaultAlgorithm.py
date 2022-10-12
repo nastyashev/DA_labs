@@ -3,6 +3,7 @@ import shutil
 from functions import *
 
 
+#основний алгоритм злиття
 def balancedMultiwayMerging(pathNotSorted: str, pathSorded: str, waysNum: str):
     pathB = []
     pathC = []
@@ -37,6 +38,7 @@ def balancedMultiwayMerging(pathNotSorted: str, pathSorded: str, waysNum: str):
             os.remove(path)
 
 
+#розділення початкового файлу
 def splitA(pathNotSorted: str, pathB: list, waysNum: str):
     fileA = FileReader(pathNotSorted)
     filesB = []
@@ -55,6 +57,7 @@ def splitA(pathNotSorted: str, pathB: list, waysNum: str):
         file.close()
 
 
+#злиття n файлів у інші n файлів
 def sortMerge(pathsInputs: list, pathsOutputs: list, waysNum: int):
     readers = []
     writers = []
@@ -97,6 +100,7 @@ def sortMerge(pathsInputs: list, pathsOutputs: list, waysNum: int):
         file.close()
 
 
+#первіряє чи прочитані всі файли
 def isEOFReached(readers):
     for file in readers:
         if file.current:
@@ -104,5 +108,6 @@ def isEOFReached(readers):
     return True
 
 
+#перевіряє чи сортування завершилося
 def isSorted(pathA: str, pathB: str, pathC: str) -> bool:
     return os.path.getsize(pathA) == os.path.getsize(pathB) or os.path.getsize(pathA) == os.path.getsize(pathC)
